@@ -56,7 +56,7 @@ export async function completeTodo(id, update) {
 }
 
 export async function deleteTodo(id) {
-  const res = await fetch(`${BASE_URL}/api/v1/todos/${id}`, {
+  await fetch(`${BASE_URL}/api/v1/todos/${id}`, {
     method: 'DELETE',
     headers: {
       Accept: 'application/json',
