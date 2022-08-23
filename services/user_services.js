@@ -20,7 +20,7 @@ export async function signUpUser(userInfo) {
 }
 
 export async function signInUser(userInfo) {
-  const res = await fetch(`${BASE_URL}/api/v1/users`, {
+  const res = await fetch(`${BASE_URL}/api/v1/users/sessions`, {
     method: "POST",
     headers: {
       Accept: "application/json",
