@@ -37,7 +37,6 @@ export async function getTodos() {
 }
 
 export async function completeTodo(id, update) {
-  console.log(id);
   const res = await fetch(`${BASE_URL}/api/v1/todos/${id}`, {
     method: "PUT",
     headers: {
@@ -52,6 +51,19 @@ export async function completeTodo(id, update) {
   if (res.ok) {
     return response;
   } else {
+    console.error(response.message);
+  }
+}
+
+export async function deleteTodo(id) {
+  const res = await fetch(`${BASE_URL}/api/v1/todos/${id}`, {
+    method: "DELETE",
+    headers: {
+      Accept: "application/json",
+    },
+    credentials: "include",
+  });
+  if (!res.ok) {
     console.error(response.message);
   }
 }

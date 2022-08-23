@@ -1,6 +1,11 @@
 import { getUser, signOutUser } from "../services/user_services.js";
 import createLogoutButton from "../components/LogoutButton.js";
-import { addTodo, completeTodo, getTodos } from "../services/todo_services.js";
+import {
+  addTodo,
+  completeTodo,
+  getTodos,
+  deleteTodo,
+} from "../services/todo_services.js";
 import createAddTaskForm from "../components/AddTaskForm.js";
 import createTodoList from "../components/TodoList.js";
 
@@ -30,6 +35,13 @@ async function handleComplete(id, update) {
   display();
 }
 
+async function handleDelete(id) {
+  const deletedTodo = await deleteTodo(id);
+  const todo = todos.find((todo) => todo.id === id);
+  todos.splice(todos.indexOf(todo), 1);
+  display();
+}
+
 const CreateLogoutButton = createLogoutButton(
   document.querySelector("#logout"),
   { handleLogout }
@@ -40,6 +52,7 @@ const CreateAddTaskForm = createAddTaskForm(
 );
 const CreateTodoList = createTodoList(document.querySelector("#tasks"), {
   handleComplete,
+  handleDelete,
 });
 
 function display() {

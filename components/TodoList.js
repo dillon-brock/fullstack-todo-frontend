@@ -1,13 +1,13 @@
-export default function createTodoList(root, { handleComplete }) {
+export default function createTodoList(root, { handleComplete, handleDelete }) {
   return ({ todos }) => {
     root.innerHTML = "";
     for (const todo of todos) {
-      root.append(Todo({ todo, handleComplete }));
+      root.append(Todo({ todo, handleComplete, handleDelete }));
     }
   };
 }
 
-function Todo({ todo, handleComplete }) {
+function Todo({ todo, handleComplete, handleDelete }) {
   const li = document.createElement("li");
   li.classList.add("task");
 
@@ -27,7 +27,15 @@ function Todo({ todo, handleComplete }) {
     handleComplete(todo.id, { completed: true });
   });
 
-  li.append(taskSpan, completeButton);
+  const deleteButton = document.createElement("button");
+  deleteButton.textContent = "REMOVE";
+  deleteButton.classList.add("delete-button");
+
+  deleteButton.addEventListener("click", () => {
+    handleDelete(todo.id);
+  });
+
+  li.append(taskSpan, completeButton, deleteButton);
 
   return li;
 }
