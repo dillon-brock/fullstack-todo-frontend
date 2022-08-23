@@ -63,7 +63,4 @@ export async function deleteTodo(id) {
     },
     credentials: 'include',
   });
-  if (!res.ok) {
-    console.error(response.message);
-  }
 }
