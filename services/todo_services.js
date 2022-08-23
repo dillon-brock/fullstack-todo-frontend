@@ -1,13 +1,13 @@
-const BASE_URL = "http://localhost:7890";
+const BASE_URL = 'http://localhost:7890';
 
 export async function addTodo(todo) {
   const res = await fetch(`${BASE_URL}/api/v1/todos`, {
-    method: "POST",
+    method: 'POST',
     headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
     },
-    credentials: "include",
+    credentials: 'include',
     body: JSON.stringify(todo),
   });
 
@@ -21,11 +21,11 @@ export async function addTodo(todo) {
 
 export async function getTodos() {
   const res = await fetch(`${BASE_URL}/api/v1/todos`, {
-    method: "GET",
+    method: 'GET',
     headers: {
-      Accept: "application/json",
+      Accept: 'application/json',
     },
-    credentials: "include",
+    credentials: 'include',
   });
 
   const response = await res.json();
@@ -38,12 +38,12 @@ export async function getTodos() {
 
 export async function completeTodo(id, update) {
   const res = await fetch(`${BASE_URL}/api/v1/todos/${id}`, {
-    method: "PUT",
+    method: 'PUT',
     headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
     },
-    credentials: "include",
+    credentials: 'include',
     body: JSON.stringify(update),
   });
 
@@ -57,11 +57,11 @@ export async function completeTodo(id, update) {
 
 export async function deleteTodo(id) {
   const res = await fetch(`${BASE_URL}/api/v1/todos/${id}`, {
-    method: "DELETE",
+    method: 'DELETE',
     headers: {
-      Accept: "application/json",
+      Accept: 'application/json',
     },
-    credentials: "include",
+    credentials: 'include',
   });
   if (!res.ok) {
     console.error(response.message);

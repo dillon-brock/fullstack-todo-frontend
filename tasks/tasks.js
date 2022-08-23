@@ -1,19 +1,19 @@
-import { getUser, signOutUser } from "../services/user_services.js";
-import createLogoutButton from "../components/LogoutButton.js";
+import { getUser, signOutUser } from '../services/user_services.js';
+import createLogoutButton from '../components/LogoutButton.js';
 import {
   addTodo,
   completeTodo,
   getTodos,
   deleteTodo,
-} from "../services/todo_services.js";
-import createAddTaskForm from "../components/AddTaskForm.js";
-import createTodoList from "../components/TodoList.js";
+} from '../services/todo_services.js';
+import createAddTaskForm from '../components/AddTaskForm.js';
+import createTodoList from '../components/TodoList.js';
 
 let todos = [];
 
 async function handlePageLoad() {
   const user = await getUser();
-  if (!user) location.replace("../");
+  if (!user) location.replace('../');
   todos = await getTodos();
   display();
 }
@@ -36,21 +36,21 @@ async function handleComplete(id, update) {
 }
 
 async function handleDelete(id) {
-  const deletedTodo = await deleteTodo(id);
+  await deleteTodo(id);
   const todo = todos.find((todo) => todo.id === id);
   todos.splice(todos.indexOf(todo), 1);
   display();
 }
 
 const CreateLogoutButton = createLogoutButton(
-  document.querySelector("#logout"),
+  document.querySelector('#logout'),
   { handleLogout }
 );
 const CreateAddTaskForm = createAddTaskForm(
-  document.querySelector("#new-task"),
+  document.querySelector('#new-task'),
   { handleAddTodo }
 );
-const CreateTodoList = createTodoList(document.querySelector("#tasks"), {
+const CreateTodoList = createTodoList(document.querySelector('#tasks'), {
   handleComplete,
   handleDelete,
 });
