@@ -1,4 +1,8 @@
-import { redirectIfLoggedIn, signInUser, signUpUser } from "./services/user_services.js";
+import {
+  redirectIfLoggedIn,
+  signInUser,
+  signUpUser,
+} from "./services/user_services.js";
 
 const signUpForm = document.querySelector("#sign-up");
 const signInForm = document.querySelector("#sign-in");
@@ -16,7 +20,7 @@ signUpForm.addEventListener("submit", async (e) => {
   await signUpUser(userInfo);
 });
 
-signInForm.addEventListener("submit", (e) => {
+signInForm.addEventListener("submit", async (e) => {
   e.preventDefault();
   const formData = new FormData(signInForm);
   const userInfo = {
