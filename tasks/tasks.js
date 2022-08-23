@@ -1,4 +1,7 @@
-import { getUser } from "../services/user_services.js";
+import { signOutUser } from "../services/user_services";
 
-const user = await getUser();
-console.log(user);
+const logoutButton = document.querySelector("#logout");
+
+logoutButton.addEventListener("click", async () => {
+  await signOutUser();
+});

@@ -53,6 +53,16 @@ export async function getUser() {
   }
 }
 
+export async function signOutUser() {
+  const res = await fetch(`${BASE_URL}/api/v1/users/sessions`, {
+    method: "DELETE",
+    credentials: "include",
+  });
+  if (res.ok) {
+    location.replace("../");
+  }
+}
+
 export async function redirectIfLoggedIn() {
   const user = await getUser();
   if (user) {
