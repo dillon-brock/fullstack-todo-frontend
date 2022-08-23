@@ -1,8 +1,10 @@
-import { signUpUser } from "./services/user_services";
+import { redirectIfLoggedIn, signInUser, signUpUser } from "./services/user_services.js";
 
 const signUpForm = document.querySelector("#sign-up");
+const signInForm = document.querySelector("#sign-in");
 
-signUpForm.addEventListener("submit", () => {
+signUpForm.addEventListener("submit", async (e) => {
+  e.preventDefault();
   const formData = new FormData(signUpForm);
   const userInfo = {
     email: formData.get("email"),
@@ -11,5 +13,18 @@ signUpForm.addEventListener("submit", () => {
     lastName: formData.get("last-name"),
   };
 
-  signUpUser(userInfo);
+  await signUpUser(userInfo);
 });
+
+signInForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+  const formData = new FormData(signInForm);
+  const userInfo = {
+    email: formData.get("email"),
+    password: formData.get("password"),
+  };
+
+  await signInUser(userInfo);
+});
+
+await redirectIfLoggedIn();
