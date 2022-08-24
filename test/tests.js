@@ -3,12 +3,12 @@
 const test = QUnit.test;
 
 test('example test...', (expect) => {
-    // Arrange
-    const expected = true;
+  // Arrange
+  const expected = true;
 
-    // Act
-    const actual = true;
+  // Act
+  const actual = true;
 
-    // Assert
-    expect.deepEqual(actual, expected);
+  // Assert
+  expect.deepEqual(actual, expected);
 });

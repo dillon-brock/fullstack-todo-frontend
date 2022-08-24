@@ -1,19 +1,34 @@
-// import services and utilities
+import {
+  redirectIfLoggedIn,
+  signInUser,
+  signUpUser,
+} from './services/user_services.js';
 
-// import component creators
+const signUpForm = document.querySelector('#sign-up');
+const signInForm = document.querySelector('#sign-in');
 
-// declare state variables
+signUpForm.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const formData = new FormData(signUpForm);
+  const userInfo = {
+    email: formData.get('email'),
+    password: formData.get('password'),
+    firstName: formData.get('first-name'),
+    lastName: formData.get('last-name'),
+  };
 
-// write handler functions
+  await signUpUser(userInfo);
+});
 
-// Create each component: 
-// - pass in the root element via querySelector
-// - pass any needed handler functions as properties of an actions object 
+signInForm.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const formData = new FormData(signInForm);
+  const userInfo = {
+    email: formData.get('email'),
+    password: formData.get('password'),
+  };
 
-// Roll-up display function that renders (calls with state) each component
-function display() {
-    // Call each component passing in props that are the pieces of state this component needs
-}
+  await signInUser(userInfo);
+});
 
-// Call display on page load
-display();
+await redirectIfLoggedIn();
