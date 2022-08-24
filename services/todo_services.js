@@ -1,4 +1,4 @@
-const BASE_URL = 'https://db-backend-shopping-list.herokuapp.com';
+const BASE_URL = 'https://db-fullstack-todo-backend.herokuapp.com';
 
 export async function addTodo(todo) {
   const res = await fetch(`${BASE_URL}/api/v1/todos`, {
